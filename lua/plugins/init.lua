@@ -64,8 +64,16 @@ return packer.startup(function()
       end,
    }
 
+    use {
+      "norcalli/nvim-colorizer.lua"
+    }
+
    use {
-     "norcalli/nvim-colorizer.lua"
+     "jose-elias-alvarez/null-ls.nvim",
+     after = "nvim-lspconfig",
+     config = function()
+     require("custom.plugin_confs.null-ls").setup()
+     end,
    }
 
    use {
@@ -96,13 +104,6 @@ return packer.startup(function()
       disable = not status.blankline,
       event = "BufRead",
       config = override_req("indent_blankline", "(plugins.configs.others).blankline()"),
-   }
-
-   use {
-      "norcalli/nvim-colorizer.lua",
-      disable = not status.colorizer,
-      event = "BufRead",
-      config = override_req("nvim_colorizer", "(plugins.configs.others).colorizer()"),
    }
 
    use {
